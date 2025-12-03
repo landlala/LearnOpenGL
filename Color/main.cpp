@@ -237,11 +237,14 @@ int main() {
 
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		vec3 lightPos(1.2f, 1.0f, 2.0f);
+		vec3 lightDir(-0.2f, -1.0f, -0.3f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		lightingShader.use();
-		glUniform3fv(glGetUniformLocation(lightingShader.ID, "light.position"), 1, value_ptr(lightPos));
-		glUniform3fv(glGetUniformLocation(lightingShader.ID, "viewPos"), 1, value_ptr(cameraPos));
+		/*glUniform3fv(glGetUniformLocation(lightingShader.ID, "light.direction"), 1, value_ptr(lightDir));
+		glUniform3fv(glGetUniformLocation(lightingShader.ID, "light.position"), 1, value_ptr(lightPos));*/
+		glUniform3fv(glGetUniformLocation(lightingShader.ID, "light.direction"), 1, value_ptr(cameraFront));
+		glUniform3fv(glGetUniformLocation(lightingShader.ID, "light.position"), 1, value_ptr(cameraPos));
 
 		glUniform3f(glGetUniformLocation(lightingShader.ID, "material.specular"), 0.5f, 0.5f, 0.5f);
 		glUniform1f(glGetUniformLocation(lightingShader.ID, "material.shiness"), 32.0f);
@@ -250,7 +253,11 @@ int main() {
 		glUniform3f(glGetUniformLocation(lightingShader.ID, "light.diffuse"), 0.5f, 0.5f, 0.5f);
 		glUniform3f(glGetUniformLocation(lightingShader.ID, "light.specular"), 1.0f, 1.0f, 1.0f);
 
-
+		glUniform1f(glGetUniformLocation(lightingShader.ID, "light.constant"), 1.0f);
+		glUniform1f(glGetUniformLocation(lightingShader.ID, "light.linear"), 0.09f);
+		glUniform1f(glGetUniformLocation(lightingShader.ID, "light.quadratic"), 0.032f);
+		glUniform1f(glGetUniformLocation(lightingShader.ID, "light.cutOff"), cos(radians(12.5f)));
+		glUniform1f(glGetUniformLocation(lightingShader.ID, "light.outerCutOff"), cos(radians(17.5f)));
 
 		mat4 view = mat4(1.0f);
 		view = lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
@@ -262,9 +269,11 @@ int main() {
 		unsigned int transformLoc3 = glGetUniformLocation(lightingShader.ID, "projection");
 		glUniformMatrix4fv(transformLoc3, 1, GL_FALSE, value_ptr(projection));
 
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < 10; i++) {
 			mat4 model = mat4(1.0f);
 			model = translate(model, cubePositions[i]);
+			float angle = 20.0f * i;
+			model = rotate(model, radians(angle), vec3(1.0f, 0.3f, 0.5f));
 
 			unsigned int transformLoc1 = glGetUniformLocation(lightingShader.ID, "model");
 			glUniformMatrix4fv(transformLoc1, 1, GL_FALSE, value_ptr(model));

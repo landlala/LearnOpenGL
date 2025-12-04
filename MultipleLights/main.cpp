@@ -231,6 +231,7 @@ int main() {
 		vec3 lightDir(-0.2f, -1.0f, -0.3f);
 
 		lightingShader.use();
+		lightingShader.setVec3("viewPos", camera.Position);
 		glUniform3f(glGetUniformLocation(lightingShader.ID, "material.specular"), 0.5f, 0.5f, 0.5f);
 		glUniform1f(glGetUniformLocation(lightingShader.ID, "material.shiness"), 32.0f);
 
@@ -270,6 +271,14 @@ int main() {
 		lightingShader.setFloat("pointLights[3].constant", 1.0f);
 		lightingShader.setFloat("pointLights[3].linear", 0.09f);
 		lightingShader.setFloat("pointLights[3].quadratic", 0.032f);
+
+		lightingShader.setVec3("spotLight.position", camera.Position);
+		lightingShader.setVec3("spotLight.direction", camera.Front);
+		lightingShader.setVec3("spotLight.ambient", 0.0f, 0.0f, 0.0f);
+		lightingShader.setVec3("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
+		lightingShader.setVec3("spotLight.specular", 1.0f, 1.0f, 1.0f);
+		lightingShader.setFloat("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
+		lightingShader.setFloat("spotLight.outerCutOff", glm::cos(glm::radians(15.0f)));
 
 		mat4 view = mat4(1.0f);
 		view = camera.GetViewMatrix();

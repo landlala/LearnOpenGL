@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Coordinate", "Coordinate\Co
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Color", "Color\Color.vcxproj", "{035B0BD1-63C7-4F8F-8233-1AC888B7026F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MultipleLights", "MultipleLights\MultipleLights.vcxproj", "{D59DB407-8CDF-4181-9D54-1B0BAFB1E646}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{035B0BD1-63C7-4F8F-8233-1AC888B7026F}.Release|x64.Build.0 = Release|x64
 		{035B0BD1-63C7-4F8F-8233-1AC888B7026F}.Release|x86.ActiveCfg = Release|Win32
 		{035B0BD1-63C7-4F8F-8233-1AC888B7026F}.Release|x86.Build.0 = Release|Win32
+		{D59DB407-8CDF-4181-9D54-1B0BAFB1E646}.Debug|x64.ActiveCfg = Debug|x64
+		{D59DB407-8CDF-4181-9D54-1B0BAFB1E646}.Debug|x64.Build.0 = Debug|x64
+		{D59DB407-8CDF-4181-9D54-1B0BAFB1E646}.Debug|x86.ActiveCfg = Debug|Win32
+		{D59DB407-8CDF-4181-9D54-1B0BAFB1E646}.Debug|x86.Build.0 = Debug|Win32
+		{D59DB407-8CDF-4181-9D54-1B0BAFB1E646}.Release|x64.ActiveCfg = Release|x64
+		{D59DB407-8CDF-4181-9D54-1B0BAFB1E646}.Release|x64.Build.0 = Release|x64
+		{D59DB407-8CDF-4181-9D54-1B0BAFB1E646}.Release|x86.ActiveCfg = Release|Win32
+		{D59DB407-8CDF-4181-9D54-1B0BAFB1E646}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
